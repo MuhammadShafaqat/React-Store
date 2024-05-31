@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar1 } from "./components/navbar1/Navbar1";
+import { Home } from "./components/home/Home";
+import { Filters } from "./components/filters/Filters";
 
 function App() {
+  const [category, setCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+   
+      <div className="App1">
+<Navbar1 setSearchTerm={setSearchTerm} />
+<Filters setCategory={setCategory} />
+      <Home category={category}  searchTerm={searchTerm} />
+      </div>
+    </React.Fragment>
   );
 }
 
