@@ -1,9 +1,11 @@
 import "./App.css";
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar1 } from "./components/navbar1/Navbar1";
 import { Home } from "./components/home/Home";
 import { Filters } from "./components/filters/Filters";
+import { Product } from "./components/product/Product";
 
 function App() {
   const [category, setCategory] = useState('all');
@@ -11,12 +13,17 @@ function App() {
 
   return (
     <React.Fragment>
-   
+   <Router >
       <div className="App1">
 <Navbar1 setSearchTerm={setSearchTerm} />
 <Filters setCategory={setCategory} />
-      <Home category={category}  searchTerm={searchTerm} />
+<Routes>
+
+      <Route exact path='/' element={<Home category={category}  searchTerm={searchTerm} />}  />
+      <Route path='/product/:id' element={<Product/>}  />
+</Routes>
       </div>
+      </Router>
     </React.Fragment>
   );
 }
