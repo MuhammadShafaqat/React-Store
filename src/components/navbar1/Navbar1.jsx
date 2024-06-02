@@ -7,11 +7,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { BsCart3 } from 'react-icons/bs';
 import styles from './styles.module.scss'
+import { useSelector } from 'react-redux';
 
 export const Navbar1 =({setSearchTerm})=> {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  const cart = useSelector((state) => state.cart);
+
   return (
     <Navbar expand="lg" bg='primary' className={styles.wrapper}>
       <Container fluid>
@@ -52,11 +55,20 @@ export const Navbar1 =({setSearchTerm})=> {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <Button variant="outline-info" className="ms-2">
-                <BsCart3 /> {/* Cart icon */}
-              </Button>
+          {/* <Nav.Link href="#action1">Home</Nav.Link> */}
+            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
+            <Button variant="outline-info" className="position-relative ms-2">
+      <BsCart3 style={{ padding: "0" }} />
+      <span
+        style={{ fontSize: "12px" }}
+        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+      >
+        {/* {cart?.cartItems?.length || 0} */}
+        {cart?.totalItems || 0}
+
+        <span className="visually-hidden">unread messages</span>
+      </span>
+    </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

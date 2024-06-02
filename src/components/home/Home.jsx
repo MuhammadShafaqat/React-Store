@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/reducers/cart";
 
 export const Home = ({ category, searchTerm }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
 
   const fetchData = async () => {
     try {
@@ -37,6 +41,12 @@ export const Home = ({ category, searchTerm }) => {
     .filter(product => {
       return product.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
+//
+const handleAddToCart = (product) => {
+  dispatch(addToCart({ ...product, quantity : 1 }));
+  console.log(product)
+};
+
 
   return (
     <div className={styles.container}>
@@ -54,7 +64,9 @@ export const Home = ({ category, searchTerm }) => {
               </h3>
               <p className={styles.product_description}>{product.description}</p>
               <span className={styles.product_price}><strong>PRICE: </strong>${product.price}</span><br />
-              <button className={styles.add_to_cart}>Add To Cart</button>
+              <button className={styles.add_to_cart}
+               onClick={() => handleAddToCart(product)}
+              >Add To Cart</button>
             </div>
           </div>
         </div>
