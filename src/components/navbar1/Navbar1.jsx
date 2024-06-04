@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { BsCart3 } from 'react-icons/bs';
 import styles from './styles.module.scss'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Navbar1 =({setSearchTerm})=> {
   const handleSearchChange = (e) => {
@@ -48,27 +49,22 @@ export const Navbar1 =({setSearchTerm})=> {
               type="search"
               placeholder="Search"
               className="me-2"
-              aria-label="Search"
-              
-              // onChange={(e) => setSearchTerm(e.target.value)}
-              onChange={handleSearchChange}
+              aria-label="Search"            
+             onChange={handleSearchChange}
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          {/* <Nav.Link href="#action1">Home</Nav.Link> */}
-            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
-            <Button variant="outline-info" className="position-relative ms-2">
+         
+          <Link to="/cartItems" className="position-relative ms-2 btn btn-outline-info">
       <BsCart3 style={{ padding: "0" }} />
       <span
         style={{ fontSize: "12px" }}
         className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
       >
-        {/* {cart?.cartItems?.length || 0} */}
         {cart?.totalItems || 0}
-
         <span className="visually-hidden">unread messages</span>
       </span>
-    </Button>
+    </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
