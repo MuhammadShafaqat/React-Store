@@ -8,6 +8,7 @@ import { Filters } from "./components/filters/Filters";
 import { Product } from "./components/product/Product";
 import CartItems from "./components/cartItems/CartItems";
 import CheckoutPage from "./components/checkoutPage/CheckoutPage";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [category, setCategory] = useState('all');
@@ -27,6 +28,7 @@ function App() {
       <Route   path='/checkoutPage' element={<CheckoutPage/>}  />
 
 </Routes>
+<Footer />
       </div>
       </Router>
     </React.Fragment>
