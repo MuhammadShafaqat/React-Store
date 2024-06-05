@@ -1,16 +1,60 @@
-.wrapper{
+.wrapper {
     padding: 1.1rem;
-}
-.title{
-    color: aliceblue;
+    background-color: #343a40; // Dark background for navbar
+  }
+  
+  .title {
+    color: #ffffff;
     font-size: 1.5rem;
     font-weight: bold;
-}
-.search{
-    display: flex;
-}
-@media (min-width: 998px) {
-    .search {
+    &:hover {
+      color: #00d1b2; // Add hover effect for the title
+    }
+  }
+  
+  .search {
+    width: 100%;
+    max-width: 35rem;
+    @media (min-width: 998px) {
       width: 35rem;
     }
-}
+  }
+  
+  .cartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cartButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0.5rem;
+  }
+  
+  .cartBadge {
+    font-size: 12px;
+  }
+  
+  @media (max-width: 997px) {
+    .search {
+      width: auto;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .wrapper {
+      padding: 0.5rem;
+    }
+    .title {
+      font-size: 1.2rem;
+    }
+    .cartContainer {
+      order: -1; // Ensure cart button appears before search bar on small screens
+      margin-bottom: 0.5rem;
+    }
+  }
+  

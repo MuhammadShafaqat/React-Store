@@ -30,12 +30,7 @@ export const cartSlice = createSlice({
         state.totalItems -= itemToRemove.quantity; // Update totalItems count by the quantity of the removed item
       }
      
-      // const itemId = action.payload.id;
-      //  var itemIndex = state.cartItems.findIndex(item => item.id !== itemId);
-      //  if (itemIndex !== -1) {
-      //   state.totalItems -= state.cartItems[itemIndex].quantity;
-      //   state.cartItems.splice(itemIndex, 1);
-      //  }
+   
     },
     updateCartItem: (state, action) => {
       state.value += action.payload

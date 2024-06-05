@@ -26,7 +26,7 @@ const CartItems = () => {
     <div>
       {products.length !== 0 ? (
         <div className="container">
-          <div className="card_table">
+          <div className={styles.card_table}>
             <div className="cart-product">
               <table className="table table-responsive">
                 <thead>
