@@ -21,7 +21,7 @@ function App() {
 <Filters setCategory={setCategory} />
 <Routes>
 
-      <Route exact path='/home' element={<Home category={category}  searchTerm={searchTerm} />}  />
+      <Route exact path='/' element={<Home category={category}  searchTerm={searchTerm} />}  />
       <Route path='/product/:id' element={<Product/>}  />
       <Route   path='/cartItems' element={<CartItems/>}  />
       <Route   path='/checkoutPage' element={<CheckoutPage/>}  />

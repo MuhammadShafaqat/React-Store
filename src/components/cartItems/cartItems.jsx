@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react';
+// components/cart/CartItems.js
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
+import { BsTrash } from 'react-icons/bs';
+import { removeFromCart, emptyCart } from '../../redux/reducers/cart';
 
-const CartItems = ({  grandTotal, removeItem, emptyCart }) => {
+const CartItems = () => {
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.cart.cartItems);
 
-  const [products, setProduts] = useState([]);
-
-  const generateRandomData = () => {
-    const newData = [];
-    for (let i = 0; i < 10; i++) { // Adjust loop count for desired number of items
-      newData.push({
-        index: i + 1, // Key for rendering (consider using item.id if available)
-        title: `Product ${i + 1}`,
-        image: `https://picsum.photos/id/${i + 100}/120/120`, // Random image placeholder
-        description: `This is a description for product ${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`, // Sample description
-        price: Math.floor(Math.random() * 100) + 1, // Random price between $1 and $100
-        quantity: Math.floor(Math.random() * 10) + 1, // Random quantity between 1 and 10
-        total: (Math.floor(Math.random() * 100) + 1) * (Math.floor(Math.random() * 10) + 1), // Random total based on price and quantity
-      });
-    }
-    setProduts(newData);
+  const handleRemoveItem = (item) => {
+    dispatch(removeFromCart(item));
   };
 
-  // Generate data on component mount (optional)
-  useEffect(() => {
-    generateRandomData();
-  }, []);
+  const handleEmptyCart = () => {
+    dispatch(emptyCart());
+  };
 
-  
+  // const grandTotal = products.reduce((total, product) => total + (product.price * product.quantity), 0);
+   // Ensure grandTotal calculation handles an empty array
+  const grandTotal = products.length > 0 ? products.reduce((total, product) => total + (product.price * product.quantity), 0) : 0;
+
   return (
     <div>
       {products.length !== 0 ? (
@@ -53,19 +47,21 @@ const CartItems = ({  grandTotal, removeItem, emptyCart }) => {
                       <td>{index + 1}</td>
                       <td>{item.title}</td>
                       <td><img style={{ width: '120px' }} src={item.image} alt="" /></td>
-                      <td style={{ width: '25%' }}>{item.description}</td>
-                      <td style={{ width: '12%' }}>{item.price}</td>
+                      <td style={{ width: '32%' }}>{item.description}</td>
+                      <td style={{ width: '12%', fontWeight: 'bold' }}>${item.price}</td>
                       <td style={{ width: '12%' }}>{item.quantity}</td>
-                      <td style={{ width: '12%' }}>{item.total}</td>
+                      <td style={{ width: '12%' }}>${item.price * item.quantity}</td>
                       <td>
-                        <button onClick={() => removeItem(item)} className="btn btn-danger"><i className="fas fa-trash-alt"></i></button>
+                        <button onClick={() => handleRemoveItem(item)} className="btn btn-danger">
+                          <BsTrash />
+                        </button>
                       </td>
                     </tr>
                   ))}
                   <tr>
                     <td colSpan="4"></td>
-                    <td><button onClick={emptyCart} className="btn btn-danger">Empty Cart</button></td>
-                    <td><Link to="/home" className="btn btn-primary">Shop More</Link></td>
+                    <td><button onClick={handleEmptyCart} className="btn btn-danger">Empty Cart</button></td>
+                    <td><Link to="/" className="btn btn-primary">Shop More</Link></td>
                     <td><button className="btn btn-success">Checkout</button></td>
                     <td><strong>Grand Total : ${grandTotal}</strong></td>
                   </tr>
@@ -83,7 +79,7 @@ const CartItems = ({  grandTotal, removeItem, emptyCart }) => {
             <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="" />
             <h4>Your cart is empty!</h4>
             <h6>Add item to it now</h6>
-            <Link to="/products" className="btn btn-primary">Shop Now</Link>
+            <Link to="/" className="btn btn-primary">Shop Now</Link>
           </div>
         </div>
       )}
