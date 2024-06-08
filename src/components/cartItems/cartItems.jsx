@@ -62,7 +62,9 @@ const CartItems = () => {
                     <td colSpan="4"></td>
                     <td><button onClick={handleEmptyCart} className="btn btn-danger">Empty Cart</button></td>
                     <td><Link to="/" className="btn btn-primary">Shop More</Link></td>
-                    <td><button className="btn btn-success">Checkout</button></td>
+                    <td><Link to="/checkoutPage" className="btn btn-success">Checkout</Link></td>
+
+                    {/* <td><button className="btn btn-success">Checkout</button></td> */}
                     <td><strong>Grand Total : ${grandTotal}</strong></td>
                   </tr>
                 </tbody>
@@ -72,11 +74,11 @@ const CartItems = () => {
         </div>
       ) : (
         <div className="container">
-          <div className="card">
+          <div className={styles.card}>
             <h5 className="card-title">My Cart</h5>
           </div>
-          <div className="center">
-            <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="" />
+          <div className={styles.center}>
+            <img src="https://rukminim1.flixcart.com/www/550/550/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="" />
             <h4>Your cart is empty!</h4>
             <h6>Add item to it now</h6>
             <Link to="/" className="btn btn-primary">Shop Now</Link>
