@@ -6,7 +6,7 @@ import { Navbar1 } from "./components/navbar1/Navbar1";
 import { Home } from "./components/home/Home";
 import { Filters } from "./components/filters/Filters";
 import { Product } from "./components/product/Product";
-import CartItems from "./components/cartItems/CartItems";
+import CartItems from "./components/cartItems/cartItems";
 import CheckoutPage from "./components/checkoutPage/CheckoutPage";
 import Footer from "./components/footer/Footer";
 
@@ -40,7 +40,7 @@ const MainContent = ({ category, setCategory, searchTerm }) => {
       <Routes>
         <Route exact path='/' element={<Home category={category} searchTerm={searchTerm} />} />
         <Route path='/product/:id' element={<Product />} />
-        <Route path='/cartItems' element={<CartItems />} />
+        <Route path='/cartItems' element={<cartItems />} />
         <Route path='/checkoutPage' element={<CheckoutPage />} />
       </Routes>
     </>

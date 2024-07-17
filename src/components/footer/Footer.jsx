@@ -14,10 +14,11 @@ const Footer = () => {
         <div className={styles.footer__column}>
           <h4 className={styles.footer__column_title}>Quick Links</h4>
           <ul className={styles.footer__column_links}>
-            <li className={styles.footer__column_links_item}><a href="/shop">Shop</a></li>
-            <li className={styles.footer__column_links_item}><a href="/contact">Contact Us</a></li>
-            <li className={styles.footer__column_links_item}><a href="/about">About Us</a></li>
-            <li className={styles.footer__column_links_item}><a href="/faq">FAQ</a></li>
+            {/* <li className={styles.footer__column_links_item}><a href="/">Shop</a></li> */}
+            <li className={styles.footer__column_links_item}><a href="/">Shop</a></li>
+            <li className={styles.footer__column_links_item}><a href="/">Contact Us</a></li>
+            <li className={styles.footer__column_links_item}><a href="/">About Us</a></li>
+            <li className={styles.footer__column_links_item}><a href="/">FAQ</a></li>
           </ul>
         </div>
         <div className={styles.footer__column}>
